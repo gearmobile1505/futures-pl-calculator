@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futures P/L Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Futures Trading Profit/Loss Calculator</h1>
+        <form action="/" method="post">
+            <label for="entry_price">Entry Price:</label>
+            <input type="number" step="0.01" name="entry_price" required>
+
+            <label for="take_profit">Take Profit:</label>
+            <input type="number" step="0.01" name="take_profit" required>
+
+            <label for="stop_loss">Stop Loss:</label>
+            <input type="number" step="0.01" name="stop_loss" required>
+
+            <label for="instrument">Select Instrument:</label>
+            <select name="instrument" required>
+                <option value="MYM">MYM</option>
+                <option value="MNQ1">MNQ1</option>
+                <option value="MESM2025">MESM2025</option>
+                <option value="MGC1">MGC1</option>
+                <option value="MCL1">MCL1</option>
+                <option value="MBT1">MBT1</option>
+                <option value="M6E1">M6E1</option>
+                <option value="M6A1">M6A1</option>
+            </select>
+
+            <label for="contracts">Number of Contracts:</label>
+            <input type="number" name="contracts" min="1" max="5" value="1" required>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        {% if profit_loss is not none %}
+            <h2>Results:</h2>
+                <p>Potential Profit: {{ profit }}</p>
+                <p>Potential Loss: {{ loss }}</p>
+                        {% endif %}
+    </div>
+</body>
+</html>
